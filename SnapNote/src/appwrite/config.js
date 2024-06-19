@@ -1,10 +1,12 @@
 import conf from '../conf/conf.js';
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
+
 export class Service{
     client = new Client();
     databases;
     bucket;
+
     
     constructor(){
         this.client
@@ -14,7 +16,7 @@ export class Service{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost(slug,{title, content, featuredImage, status, userId}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -124,12 +126,26 @@ export class Service{
         }
     }
 
-    getFilePreview(fileId){
-        return this.bucket.getFilePreview(
-            conf.appwriteBucketId,
-            fileId
-        )
-    }
+    // getFilePreview(fileId){
+    //     return this.bucket.getFilePreview(
+    //         conf.appwriteBucketId,
+    //         fileId
+    //     )
+    // }
+
+    // getFilePreview(slug) {
+    //     if (!slug) {
+    //         throw new Error("Missing required parameter: 'file'");
+    //     }
+    //     return this.bucket.getFilePreview(
+    //         conf.appwriteBucketId,
+    //         // fileId
+    //         // featuredImage
+    //         // file
+    //         slug
+    //     );
+    // }
+    
 }
 
 
