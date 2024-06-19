@@ -21,11 +21,11 @@ export class Service{
                 conf.appwriteCollectionId,
                 slug,
                 {
-                    title,
-                    content,
-                    featuredImage,
-                    status,
-                    userId,
+                    "Title":title,
+                    "Content":content,
+                    "FeaturedImage":featuredImage,
+                    "Status":status,
+                    "UserID":userId,
                 }
             )
         } catch (error) {
@@ -81,7 +81,7 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query.equal("status", "active")]){
+    async getPosts(queries = [Query.equal("Status", "active")]){
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
